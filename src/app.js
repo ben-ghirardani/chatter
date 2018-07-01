@@ -10,6 +10,12 @@ class App extends Component {
         };
     }
 
+    // dummy method to get testing going
+    sumNum(num1, num2) {
+        let total = num1 + num2
+        return total
+    }
+
     render() {
         return(
             <div>
