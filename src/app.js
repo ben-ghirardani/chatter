@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import EnterMessageForm from './EnterMessageForm';
 
 class App extends Component {
 
     constructor() {
         super();
         this.state = {
-            messageList: []
+            messageList: [],
+            message: ""
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.addMessageToList = this.addMessageToList.bind(this);
     }
 
-    // dummy method to get testing going
-    sumNum(num1, num2) {
-        let total = num1 + num2
-        return total
+    handleChange(event) {
+        this.setState({
+            message: event.target.value
+        })
+    }
+
+    handleSubmit(event) {
+        this.addMessageToList();
+        console.log('Form Value: ' + this.state.message)
+        event.preventDefault();
+    }
+
+    addMessageToList() {
+        let newMessage = this.state.message
+        let messageArray = this.state.messageList
+        messageArray.push(newMessage)
+        this.setState({messageList: messageArray})
     }
 
     render() {
         return(
-            <div>
-                Hello World!
-                </div>
+            <form id="message-form" onSubmit={this.handleSubmit} >
+                <label>Test form</label>
+                <input id="message" type="text"  value={this.state.message} onChange={this.handleChange} ></input>
+                <input id="submit" type="submit" value="Submit" ></input>
+            </form>
         )
     }
 
