@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import EnterMessageForm from './EnterMessageForm';
+import MessagePanel from './MessagePanel';
 
 class App extends Component {
 
@@ -15,16 +16,19 @@ class App extends Component {
         this.addMessageToList = this.addMessageToList.bind(this);
     }
 
+    // EnterMessageForm
     handleChange(event) {
         this.setState({
             message: event.target.value
         })
     }
 
+    // EnterMessageForm
     handleSubmit(event) {
+        event.preventDefault();
         this.addMessageToList();
         console.log('Form Value: ' + this.state.message)
-        event.preventDefault();
+        this.setState({message: ""})
     }
 
     addMessageToList() {
@@ -36,11 +40,17 @@ class App extends Component {
 
     render() {
         return(
-            <form id="message-form" onSubmit={this.handleSubmit} >
-                <label>Test form</label>
-                <input id="message" type="text"  value={this.state.message} onChange={this.handleChange} ></input>
-                <input id="submit" type="submit" value="Submit" ></input>
-            </form>
+            <div>
+                <EnterMessageForm
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                    addMessageToList={this.addMessageToList}
+                    message={this.state.message}
+                />
+                <MessagePanel
+                    messageList={this.state.messageList}
+                />
+            </div>
         )
     }
 
