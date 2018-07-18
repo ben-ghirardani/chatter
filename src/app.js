@@ -9,7 +9,10 @@ class App extends Component {
         super();
         this.state = {
             messageList: [],
-            message: ""
+            message: {
+                name: "",
+                text: ""
+            }
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,7 +22,10 @@ class App extends Component {
     // EnterMessageForm
     handleChange(event) {
         this.setState({
-            message: event.target.value
+            message: {
+                name: "",
+                text: event.target.value
+            }
         })
     }
 
@@ -28,7 +34,10 @@ class App extends Component {
         event.preventDefault();
         this.addMessageToList();
         console.log('Form Value: ' + this.state.message)
-        this.setState({message: ""})
+        this.setState({message: {
+            name: "",
+            text: ""    
+        }})
     }
 
     addMessageToList() {

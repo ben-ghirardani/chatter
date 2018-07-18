@@ -8,9 +8,10 @@ class Message extends Component {
 
     render() {
         return(
-            <p>
-                {this.props.text}
-            </p>
+            <div>
+                <p> Name: {this.props.name} </p>
+                <p> Message: {this.props.text} </p>
+            </div>
         )
     }
 

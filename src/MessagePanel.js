@@ -8,21 +8,24 @@ class MessagePanel extends Component {
         this.displayMessages = this.displayMessages.bind(this);
     }
 
-    // change everything! In App, handleSubmit should create an instance of objects, name and message. Use these to populate 
+    // change everything! In App, handleSubmit should create an array of objects, name and message. Use these to populate 
     // a <Message/> which takes in and displays these things.
 
     displayMessages() {
         let messageList = this.props.messageList;
+        console.log("messageList as props in MessagePanel", messageList)
         let messageDisplay = [];
         for(let i = 0; i < this.props.messageList.length; i++ ) {
             messageDisplay.push(
                 <div key={i}>
-                    <Message 
-                        text={messageList[i]}
+                    <Message
+                        name={messageList[i].name} 
+                        text={messageList[i].text}
                     />
                 </div>
             )
         }
+        return messageDisplay;
     }
 
     render() {
